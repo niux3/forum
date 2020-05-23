@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'libs.apps.LibsConfig',
+    'account.apps.AccountConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,3 +130,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# account
+LOGOUT_REDIRECT_URL = 'boards:index'
+LOGIN_REDIRECT_URL = 'boards:index'
+LOGIN_URL = 'account:login'
+
+# email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

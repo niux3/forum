@@ -1,0 +1,55 @@
+applications
+├── uneapp
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── models.py
+│   ├── templates
+│   │   ├── uneapp
+│   │   │   ├── une-vue.html <-- APPLIQUER FILTRE dans cette vue
+│   │   │   └── une-autre-vue.html <-- APPLIQUER FILTRE dans cette vue
+│   │   └── base_une_app.html <-- SURCHARGE base.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── uneautreapp
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── __init__.py
+│   ├── models.py
+│   ├── templates
+│   │   └── boards
+│   │       ├── create.html
+│   │       ├── home.html
+│   │       └── show.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── config
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── db.sqlite3
+├── __init__.py
+├── manage.py
+├── static
+│   ├── css
+│   │   └── bootstrap.min.css
+│   ├── img
+│   └── js
+│       ├── bootstrap.js
+│       ├── jquery.js
+│       └── popper.js
+├── templates
+│   ├── base.html
+│   └── includes
+│       └── form.html <-- APPLIQUER FILTRE dans cette vue
+└── templatetags
+    ├── form_tags.py <-- DECLARATION DES FILTRES
+    └── __init__.py
+
+21 directories, 63 files
