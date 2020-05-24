@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from .models import Board, Topic, Post
-from .forms import NewTopicForm
+from .forms import NewTopicForm, PostForm
 
 
 def index(request):
@@ -19,6 +20,7 @@ def topics(request, id, slug):
     return render(request, 'boards/topics.html', context)
 
 
+@login_required
 def create(request, id, slug):
     board = get_object_or_404(Board, pk=id, slug=slug)
     user = User.objects.first()
@@ -46,7 +48,23 @@ def create(request, id, slug):
     return render(request, 'boards/create.html', context)
 
 
-def show_post(request, slug, id, slug_post, id_post):
+def show_topic(request, slug, id, slug_post, id_post):
     topic = get_object_or_404(Topic, board__pk=id,board__slug=slug, pk=id_post, slug=slug_post)
-    print('>>>> ', topic)
     return render(request, 'boards/show_post.html', {'topic': topic})
+
+
+@login_required
+def reply_topic(request, slug, id, slug_post, id_post):
+    topic = get_object_or_404(Topic, board__pk=id,board__slug=slug, pk=id_post, slug=slug_post)
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.topic = topic
+        post.created_by = request.user
+        post.save()
+        return redirect('boards:show_topic', slug=slug, id=id, slug_post=slug_post, id_post=id_post)
+    context = {
+        'topic': topic,
+        'form': form
+    }
+    return render(request, 'boards/reply_topic.html', context)

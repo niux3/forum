@@ -26,7 +26,7 @@
     <tbody>
         {% for topic in board.topics.all %}
         <tr>
-            <td><a href="{% url 'boards:show_post' id=board.pk slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
+            <td><a href="{% url 'boards:show_topic' id=board.pk slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
             <td>{{ topic.starter.username }}</td>
             <td>0</td>
             <td>0</td>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Topic
+from .models import Topic, Post
 
 
 class NewTopicForm(forms.ModelForm):
@@ -13,3 +13,11 @@ class NewTopicForm(forms.ModelForm):
             'subject': forms.TextInput(attrs={'class': 'form-control'}),
         }
     message = forms.CharField(max_length=4000, widget=forms.Textarea(),help_text="la longueur max. est de 4000 caractères")
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            'message',
+        ]
