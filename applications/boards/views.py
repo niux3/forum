@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Count
 from django.utils.text import slugify
 from .models import Board, Topic, Post
 from .forms import NewTopicForm, PostForm
@@ -14,8 +15,10 @@ def index(request):
 
 
 def topics(request, id, slug):
+    board = get_object_or_404(Board, pk=id, slug=slug)
     context = {
-        'board': get_object_or_404(Board, pk=id, slug=slug)
+        'board': board,
+        'topics': board.topics.order_by('-updated').annotate(replies=Count('posts') - 1)
     }
     return render(request, 'boards/topics.html', context)
 
@@ -50,6 +53,8 @@ def create(request, id, slug):
 
 def show_topic(request, slug, id, slug_post, id_post):
     topic = get_object_or_404(Topic, board__pk=id,board__slug=slug, pk=id_post, slug=slug_post)
+    topic.views += 1
+    topic.save()
     return render(request, 'boards/show_post.html', {'topic': topic})
 
 

@@ -16,21 +16,21 @@
 <table class="table">
     <thead class="thead-inverse">
         <tr>
-            <th>Topic</th>
-            <th>Starter</th>
-            <th>Replies</th>
-            <th>Views</th>
-            <th>Last Update</th>
+            <th>Sujet</th>
+            <th>Auteur</th>
+            <th>Réponses</th>
+            <th>Vues</th>
+            <th>Dernier message</th>
         </tr>
     </thead>
     <tbody>
-        {% for topic in board.topics.all %}
+        {% for topic in topics %}
         <tr>
             <td><a href="{% url 'boards:show_topic' id=board.pk slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
             <td>{{ topic.starter.username }}</td>
-            <td>0</td>
-            <td>0</td>
-            <td>{{ topic.last_updated }}</td>
+            <td>{{ topic.replies }}</td>
+            <td>{{ topic.views }}</td>
+            <td>{{ topic.updated }}</td>
         </tr>
         {% endfor %}
     </tbody>
