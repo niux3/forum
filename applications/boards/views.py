@@ -44,3 +44,9 @@ def create(request, id, slug):
         'form': form
     }
     return render(request, 'boards/create.html', context)
+
+
+def show_post(request, slug, id, slug_post, id_post):
+    topic = get_object_or_404(Topic, board__pk=id,board__slug=slug, pk=id_post, slug=slug_post)
+    print('>>>> ', topic)
+    return render(request, 'boards/show_post.html', {'topic': topic})
