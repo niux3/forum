@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'libs.apps.LibsConfig',
     'account.apps.AccountConfig',
 
     'django.contrib.admin',
@@ -72,6 +71,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'form_tags': 'config.templatetags.form_tags'
+            }
         },
     },
 ]
