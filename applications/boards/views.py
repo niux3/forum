@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models import Count
 from django.utils import timezone
 from django.utils.text import slugify
-from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Board, Topic, Post
 from .forms import NewTopicForm, PostForm
 
@@ -18,9 +18,20 @@ def index(request):
 
 def topics(request, id, slug):
     board = get_object_or_404(Board, pk=id, slug=slug)
+    topics = board.topics.order_by('-updated').annotate(replies=Count('posts') - 1)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(topics, 10)
+
+    try:
+        topics = paginator.page(page)
+    except PageNotAnInteger:
+        topics = paginator.page(1)
+    except EmptyPage:
+        topics = paginator.page(paginator.num_pages)
+
     context = {
         'board': board,
-        'topics': board.topics.order_by('-updated').annotate(replies=Count('posts') - 1)
+        'topics': topics
     }
     return render(request, 'boards/topics.html', context)
 
@@ -79,10 +90,8 @@ def reply_topic(request, slug, id, slug_post, id_post):
 
 @login_required
 def edit_post(request, slug, id, slug_post, id_post, id_message):
-    print('id post => ', id_post)
     post = get_object_or_404(Post, pk=id_message)
-    topic = get_object_or_404(Topic, board__pk=id,board__slug=slug, pk=id_post, slug=slug_post)
-    print('post => ', post)
+    topic = get_object_or_404(Topic, board__pk=id, board__slug=slug, pk=id_post, slug=slug_post)
     form = PostForm(request.POST or None, instance=post)
     if form.is_valid():
         row = form.save(commit=False)

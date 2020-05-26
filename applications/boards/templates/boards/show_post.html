@@ -3,7 +3,7 @@
 {% block title %}{{ topic.subject }}{% endblock %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item"><a href="{% url 'boards:index' %}">Boards</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'boards:index' %}">Forums</a></li>
   <li class="breadcrumb-item"><a href="{% url 'boards:topics' id=topic.board.pk slug=topic.board.slug %}">{{ topic.board.name }}</a></li>
   <li class="breadcrumb-item active">{{ topic.subject }}</li>
 {% endblock %}
