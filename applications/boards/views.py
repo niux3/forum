@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Count
+from django.utils import timezone
 from django.utils.text import slugify
+from django.http import HttpResponseRedirect
 from .models import Board, Topic, Post
 from .forms import NewTopicForm, PostForm
 
@@ -71,5 +73,26 @@ def reply_topic(request, slug, id, slug_post, id_post):
     context = {
         'topic': topic,
         'form': form
+    }
+    return render(request, 'boards/reply_topic.html', context)
+
+
+@login_required
+def edit_post(request, slug, id, slug_post, id_post, id_message):
+    print('id post => ', id_post)
+    post = get_object_or_404(Post, pk=id_message)
+    topic = get_object_or_404(Topic, board__pk=id,board__slug=slug, pk=id_post, slug=slug_post)
+    print('post => ', post)
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        row = form.save(commit=False)
+        row.created_by = request.user
+        row.topic = topic
+        row.updated = timezone.now()
+        row.save()
+        return redirect('boards:show_topic', slug=slug, id=id, slug_post=slug_post, id_post=id_post)
+    context = {
+        'form': form,
+        'topic': topic
     }
     return render(request, 'boards/reply_topic.html', context)

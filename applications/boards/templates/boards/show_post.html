@@ -36,7 +36,7 @@
                 {{ post.message }}
                 {% if post.created_by == user %}
                 <div class="mt-3">
-                    <a href="#" class="btn btn-primary btn-sm" role="button">Éditer</a>
+                    <a href="{% url 'boards:edit_post' id=topic.board.pk slug=topic.board.slug id_post=topic.pk slug_post=topic.slug id_message=post.id %}" class="btn btn-primary btn-sm" role="button">Éditer</a>
                 </div>
                 {% endif %}
             </div>
