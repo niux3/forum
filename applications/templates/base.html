@@ -25,8 +25,8 @@
                                 {{ user.username|title }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                                <a class="dropdown-item" href="#">Mon compte</a>
-                                <a class="dropdown-item" href="#">Changer le mot de passe</a>
+                                <a class="dropdown-item" href="{% url 'account:profile' %}">Mon compte</a>
+                                <a class="dropdown-item" href="{% url 'account:password_change' %}">Changer le mot de passe</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'account:logout' %}">se déconnecter</a>
                             </div>
