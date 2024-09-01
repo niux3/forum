@@ -1,0 +1,24 @@
+{% if messages %}
+    {% for message in messages %}
+        {% if forloop.first %}
+            <div class="container alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<script>
+(()=>{
+    // document.querySelectorAll('*[required]').forEach(e => e.removeAttribute('required'))
+    if(document.querySelectorAll('.alert').length){
+        let $buttonClose = document.querySelector('.alert .close')
+        $buttonClose.addEventListener('click', e => e.target.closest('.alert').remove())
+        setTimeout(()=>{
+            $buttonClose.click()
+        }, 4000)
+    }
+})()
+</script>
