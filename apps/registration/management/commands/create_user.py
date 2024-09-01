@@ -6,7 +6,7 @@ from faker import Faker
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker('fr-FR')
-        for _ in range(25):
+        for _ in range(10):
             profile = fake.simple_profile()
             user = User.objects.create_user(profile['username'], password='123456')
             user.email = profile['mail']
