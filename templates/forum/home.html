@@ -5,13 +5,33 @@
 {% endblock %}
 
 {% block content %}
-<table class="table">
+<nav>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">Catégories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile">Derniers sujets</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile">Dernières réponses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile">Mes sujets</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile">Mes discussions</a>
+        </li>
+    </ul>
+</nav>
+<table class="table ">
     <thead class="thead-inverse">
         <tr>
-            <th>Forums</th>
-            <th>Messages</th>
-            <th>Sujets</th>
-            <th>Dernier message</th>
+            <th class="border-top-0">Forums</th>
+            <th class="border-top-0">Messages</th>
+            <th class="border-top-0">Sujets</th>
+            <th class="border-top-0">Dernier message</th>
         </tr>
     </thead>
     <tbody>
