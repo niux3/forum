@@ -1,0 +1,3 @@
+from registration.views.signup import Signup
+from registration.views.user_update_view import UserUpdateView
+from registration.views.password_change_view import CustomPasswordChangeView
