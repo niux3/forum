@@ -4,13 +4,18 @@ from django.contrib.auth.views import (
     LogoutView,
     # PasswordChangeView,
     # PasswordChangeDoneView,
-    PasswordResetView,
+    # PasswordResetView,
+    PasswordResetDoneView,
+    # PasswordResetConfirmView,
+    PasswordResetCompleteView,
 )
 from registration.apps import RegistrationConfig
 from registration.views import (
     Signup,
     UserUpdateView,
-    CustomPasswordChangeView
+    CustomPasswordChangeView,
+    CustomPasswordResetView,
+    CustomPasswordResetConfirmView,
 )
 
 
@@ -21,13 +26,12 @@ urlpatterns = [
     path('se-deconnecter.html', LogoutView.as_view(), name="logout"),
     path('mon-compte.html', UserUpdateView.as_view(), name="profile"),
     path('changer-mot-de-passe.html', CustomPasswordChangeView.as_view(), name='password_change'),
+
+    # this view doesn't exists because redirection after change password (registration:password_change)
     # path('changer-mot-de-passe-confirmation.html', PasswordChangeDoneView.as_view(), name='password_change_done'),
 
-
-    path('redefinir-mot-de-passe.html', PasswordResetView.as_view(
-        # template_name='account/password_reset.html',
-        # email_template_name='account/password_reset_email.html',
-        # subject_template_name='account/password_reset_subject.txt'
-    ), name='password_reset'),
-
+    path('mot-de-passe-oublie.html', CustomPasswordResetView.as_view(), name='password_reset'),
+    path('redefinition-mot-de-passe.html', PasswordResetDoneView.as_view(), name="password_reset_done"),
+    path('redefinition-mot-de-passe/<str:uidb64>/<str:token>.html', CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path("mot-de-passe-modifie.html", PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]

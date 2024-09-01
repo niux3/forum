@@ -127,9 +127,9 @@ LOGIN_URL = 'registration:login'
 
 # email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '9650522bb15611'
-EMAIL_HOST_PASSWORD = '9dfe19de3b6fc4'
-EMAIL_PORT = '2525'
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = '9650522bb15611'
+# EMAIL_HOST_PASSWORD = '9dfe19de3b6fc4'
+# EMAIL_PORT = '2525'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
