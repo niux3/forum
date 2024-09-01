@@ -3,7 +3,7 @@ from django.contrib.auth.views import (
     LoginView,
     LogoutView,
     # PasswordChangeView,
-    PasswordChangeDoneView,
+    # PasswordChangeDoneView,
     PasswordResetView,
 )
 from registration.apps import RegistrationConfig
