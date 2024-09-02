@@ -19,4 +19,3 @@ class Command(BaseCommand):
                 post.created_by = choice(users)
                 post.message = fake.paragraph(nb_sentences=randint(5, 10))
                 post.save()
-

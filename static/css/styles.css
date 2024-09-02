@@ -5,3 +5,15 @@
     transform: translateX(-50%);
     left: 50%;
 }
+
+.nav-tabs .nav-item.last{
+    flex-grow: 1;
+}
+
+.nav-tabs .nav-item.last .btn{
+    float: right;
+}
+
+.avatar{
+    width: 50px;
+}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Derniers sujets - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forums</a></li>
+  <li class="breadcrumb-item active">Derniers sujets</li>
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/primary-navtabs.html' %}
+    <table class="table">
+        <tbody>
+            {% for topic in object_list %}
+            <tr>
+                <td>
+                    <a href="" class="d-flex justify-content-center align-items-center flex-column">
+                        <img src="{% static 'img/avatar.svg' %}" alt="{{ topic.starter }}" class="mb-2 w-1 avatar">
+                    </a>
+                </td>
+                <td class="align-middle d-flex flex-column">
+                    <a href="{% url 'forum:show_topic' id=topic.board.id slug=topic.board.slug slug_post=topic.slug id_post=topic.get_post.id %}">
+                        {{ topic.subject }}
+                    </a>
+                    <span>par <a href="">{{ topic.starter }}</a>, {{ topic.views }} vue{% if topic.views > 1 %}s{% endif %}, 
+                    {% with post=topic.get_last_post %}
+                        {% if post %}
+                            <small>dernière réponse <a href="#">{{ post.created_by.username }} ({{ post.created }})</a></small>
+                        {% else %}
+                            <small class="text-muted"><em>Pas de message</em></small>
+                        {% endif %}
+                    {% endwith %}
+                </td>
+                <td class="align-middle">{{ topic.get_post_count }} réponse{% if topic.get_post_count > 1 %}s{% endif %}</td>
+                <td> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

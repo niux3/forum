@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from forum.models import Post
 
 
 class Topic(models.Model):
@@ -12,3 +13,13 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.subject
+
+    def get_last_post(self):
+        return Post.objects.filter(topic=self).order_by('-updated').first()
+
+    def get_post_count(self):
+        return Post.objects.filter(topic=self).count() - 1
+
+    def get_post(self):
+        return Post.objects.get(id=self.id)
+
