@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block title %}
-  Derniers sujets - {{ block.super }}
+    {{ prefix }} sujets - {{ block.super }}
 {% endblock %}
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forums</a></li>
-  <li class="breadcrumb-item active">Derniers sujets</li>
+  <li class="breadcrumb-item active">{{ prefix }} sujets</li>
 {% endblock %}
 
 {% block content %}
