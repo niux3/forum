@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ prefix }} réponses - {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forums</a></li>
+  <li class="breadcrumb-item active">{{ prefix }} réponses</li>
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/primary-navtabs.html' %}
+{% for post in object_list %}
+    {{ post }}
+{% endfor %}
+{% endblock %}

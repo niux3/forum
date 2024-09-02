@@ -7,14 +7,14 @@
             <a class="nav-link {% if request.get_full_path == '/derniers-sujets.html' %}active{% endif %}" href="{% url 'forum:last_topics' categories="derniers-sujets" %}">Derniers sujets</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#profile">Dernières réponses</a>
+            <a class="nav-link {% if request.get_full_path == '/dernieres-reponses.html' %}active{% endif %}" href="{% url 'forum:last_posts' categories="dernieres-reponses" %}">Dernières réponses</a>
         </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item">
             <a class="nav-link {% if request.get_full_path == '/mes-sujets.html' %}active{% endif %}" href="{% url 'forum:last_topics' categories="mes-sujets" %}">Mes sujets</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#profile">Mes discussions</a>
+            <a class="nav-link {% if request.get_full_path == '/mes-reponses.html' %}active{% endif %}" href="{% url 'forum:last_posts' categories="mes-reponses" %}">Mes discussions</a>
         </li>
         {% endif %}
         <li class="nav-item last">
