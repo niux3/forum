@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forum</a></li>
-  <li class="breadcrumb-item"><a href="{% url 'forum:topics' id=board.pk slug=board.slug %}">{{ board.name }}</a></li>
+  {#<li class="breadcrumb-item"><a href="{% url 'forum:topics' id=board.pk slug=board.slug %}">{{ board.name }}</a></li>#}
   <li class="breadcrumb-item active">Nouveau sujet</li>
 {% endblock %}
 
