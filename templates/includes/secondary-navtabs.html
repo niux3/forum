@@ -1,0 +1,21 @@
+<nav>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'forum:topics' id=board.id slug=board.slug %}">Derniers sujets</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'forum:topics' id=board.id slug=board.slug %}?{{ attribute_querystring }}={{ filters.most_popular }}">Les plus lus</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'forum:topics' id=board.id slug=board.slug %}?{{ attribute_querystring }}={{ filters.most_answers }}">Les plus répondus</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'forum:topics' id=board.id slug=board.slug %}?{{ attribute_querystring }}={{ filters.user }}">Auxquels vous avez répondus</a>
+        </li>
+        {% endif %}
+        <li class="nav-item last">
+            <a href="{% url 'forum:create' %}" class="btn btn-primary">Nouveau sujet</a>
+        </li>
+    </ul>
+</nav>

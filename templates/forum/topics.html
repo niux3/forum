@@ -10,30 +10,28 @@
 {% endblock %}
 
 {% block content %}
-<div class="mb-4">
-    <a href="{% url 'forum:create' %}" class="btn btn-primary">Nouveau sujet</a>
-</div>
-<table class="table">
-    <thead class="thead-inverse">
-        <tr>
-            <th>Sujet</th>
-            <th>Auteur</th>
-            <th>Réponses</th>
-            <th>Vues</th>
-            <th>Dernier message</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for topic in object_list %}
-        <tr>
-            <td><a href="{% url 'forum:show_topic' id=board.pk slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
-            <td>{{ topic.starter.username }}</td>
-            <td>{{ topic.replies }}</td>
-            <td>{{ topic.views }}</td>
-            <td>{{ topic.updated }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    {% include 'includes/secondary-navtabs.html' %}
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Sujet</th>
+                <th>Auteur</th>
+                <th>Réponses</th>
+                <th>Vues</th>
+                <th>Dernier message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for topic in object_list %}
+            <tr>
+                <td><a href="{% url 'forum:show_topic' id=board.pk slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
+                <td>{{ topic.starter.username }}</td>
+                <td>{{ topic.replies }}</td>
+                <td>{{ topic.views }}</td>
+                <td>{{ topic.updated }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% include 'includes/paginator.html' %}
 {% endblock %}
