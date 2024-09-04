@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block title %}Poster une réponse{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
 
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forum</a></li>
@@ -32,5 +35,14 @@
     {% include 'includes/form.html' %}
     <button type="submit" class="btn btn-success">Poster une réponse</button>
 </form>
+{% endblock %}
 
+{% block js %}
+    <script src="{% static 'js/simplemde.min.js' %}"></script>
+    <script>
+        var simplemde = new SimpleMDE({
+            element: document.querySelector("textarea"),
+            forceSync: true
+        });
+    </script>
 {% endblock %}
