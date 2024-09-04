@@ -28,7 +28,7 @@
                     <span>par <a href="">{{ topic.starter }}</a>, {{ topic.views }} vue{% if topic.views > 1 %}s{% endif %}, 
                     {% with post=topic.get_last_post %}
                         {% if post %}
-                            <small>dernière réponse <a href="#">{{ post.created_by.username }} ({{ post.created }})</a></small>
+                            <small>dernière réponse <a href="{% url 'forum:show_topic' id=post.topic.board.pk slug=post.topic.board.slug id_post=post.topic.pk slug_post=post.topic.slug %}#dernier">{{ post.created_by.username }} ({{ post.created }})</a></small>
                         {% else %}
                             <small class="text-muted"><em>Pas de message</em></small>
                         {% endif %}
