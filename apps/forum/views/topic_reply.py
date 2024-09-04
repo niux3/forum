@@ -2,6 +2,7 @@ from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
+from django.utils.html import escape
 from forum.forms import PostForm
 from forum.models import Topic
 
@@ -27,6 +28,7 @@ class TopicReply(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
+        post.message = escape(form.cleaned_data.get('message'))
         post.topic = self.topic
         post.created_by = self.request.user
         post.save()

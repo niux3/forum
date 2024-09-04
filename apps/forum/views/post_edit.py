@@ -2,6 +2,7 @@ from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404
+from django.utils.html import escape
 from forum.models import Topic, Post
 from forum.forms import PostForm
 
@@ -33,6 +34,7 @@ class PostEdit(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         row = form.save(commit=False)
+        row.message = escape(form.cleaned_data.get('message'))
         row.created_by = self.request.user
         row.topic = self.topic
         row.save()

@@ -1,6 +1,7 @@
 from django.views.generic import CreateView
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.text import slugify
+from django.utils.html import escape
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -21,7 +22,7 @@ class TopicCreate(LoginRequiredMixin, CreateView):
         topic.save()
 
         post = Post.objects.create(
-            message=form.cleaned_data.get('message'),
+            message=escape(form.cleaned_data.get('message')),
             topic=topic,
             created_by=user
         )

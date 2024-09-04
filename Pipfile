@@ -11,6 +11,7 @@ django = "==4.2"
 django-extensions = "*"
 django-widget-tweaks = "*"
 faker = "*"
+markdown = "*"
 
 [dev-packages]
 
