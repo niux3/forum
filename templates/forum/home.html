@@ -28,7 +28,7 @@
                     {% with post=board.get_last_post %}
                     {% if post %}
                     <small>
-                        <a href="#">
+                        <a href="{% url 'forum:show_topic' id=board.pk slug=board.slug id_post=post.topic.pk slug_post=post.topic.slug %}#dernier">
                             {{ post.created_by.username }} le {{ post.created }}
                         </a>
                     </small>
