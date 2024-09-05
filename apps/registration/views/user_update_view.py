@@ -22,12 +22,10 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         form = self.get_form()
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if form.is_valid() and profile_form.is_valid():
-            print('>>', profile_form.cleaned_data)
             user = form.save()
             profile_form.save(commit=False)
             profile_form.user = user
             profile_form.save()
-
             messages.success(self.request, "votre compte utilisateur a bien été modifié")
             return redirect(self.get_success_url())
         else:
