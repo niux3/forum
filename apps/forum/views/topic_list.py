@@ -29,10 +29,11 @@ class TopicList(ListView):
     def get_queryset(self):
         queryset = self.board.topics.order_by('-updated').annotate(replies=Count('posts') - 1)
         if self.has_filter:
+            print(self.board.topics.filter(posts__created_by=self.request.user))
             querysets = {
                 self.filters['most_popular']: self.board.topics.order_by('-views').annotate(replies=Count('posts') - 1),
                 self.filters['most_answers']: self.board.topics.annotate(replies=Count('posts') - 1).order_by('-replies'),
-                self.filters['user']: self.board.topics.filter(starter=self.request.user).annotate(replies=Count('posts') - 1).order_by('-updated'),
+                self.filters['user']: self.board.topics.filter(posts__created_by=self.request.user).annotate(replies=Count('posts') - 1).order_by('-updated') if self.request.user.is_authenticated else None,
             }
             filter_name = self.request.GET.get(self.attribute_querystring)
             if filter_name == self.filters['user'] and not self.request.user.is_authenticated:
