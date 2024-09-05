@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Mon profile{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
 
 {% block breadcrumb %}
 <li class="breadcrumb-item active">Mon profile</li>
@@ -17,4 +22,23 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/simplemde.min.js' %}"></script>
+    <script>
+        (()=>{
+            var simplemde = new SimpleMDE({
+                element: document.querySelector("textarea"),
+                forceSync: true
+            })
+            var $linkThemeUser = document.getElementById('theme-user'),
+                $selectTheme = document.querySelector('#id_theme')
+            $selectTheme.addEventListener('change', e =>{
+                let theme_selected = e.target.querySelector(`option[value='${e.target.value}']`).textContent,
+                    pattern = /^(.+\/)(\w+)(\.css)$/
+                $linkThemeUser.href = $linkThemeUser.getAttribute('href').replace(pattern, `\$1${theme_selected}\$3`)
+            })
+        })()
+    </script>
 {% endblock %}
