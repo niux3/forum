@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load static %}
+{% load static core_tags %}
 
 {% block title %}Poster une réponse{% endblock %}
 {% block stylesheet %}
@@ -9,8 +9,8 @@
 
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forum</a></li>
-<li class="breadcrumb-item"><a href="{% url 'forum:topics' id=topic.board.pk slug=topic.board.slug %}">{{ topic.board.name }}</a></li>
-<li class="breadcrumb-item"><a href="{% url 'forum:show_topic' id=topic.board.pk slug=topic.board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'forum:topics' slug=topic.board.slug %}">{{ topic.board.name }}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'forum:show_topic' slug=topic.board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></li>
 <li class="breadcrumb-item active">Poster une réponse</li>
 {% endblock %}
 
@@ -26,7 +26,7 @@
                 <small class="text-muted">{{ post.created_at }}</small>
             </div>
         </div>
-        {{ post.message }}
+        {{ post.message|markdown }}
     </div>
 </div>
 {% endfor %}

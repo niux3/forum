@@ -24,7 +24,7 @@
         <tbody>
             {% for topic in object_list %}
             <tr>
-                <td><a href="{% url 'forum:show_topic' id=board.pk slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
+                <td><a href="{% url 'forum:show_topic' slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
                 <td>{{ topic.starter.username }}</td>
                 <td>{{ topic.replies }}</td>
                 <td>{{ topic.views }}</td>
@@ -32,7 +32,7 @@
                     {% with post=topic.get_last_post %}
                     {% if post %}
                     <small>
-                        <a href="{% url 'forum:show_topic' id=board.pk slug=board.slug id_post=post.topic.pk slug_post=post.topic.slug %}#dernier">
+                        <a href="{% url 'forum:show_topic' slug=board.slug id_post=post.topic.pk slug_post=post.topic.slug %}#dernier">
                             {{ post.created_by.username }} le {{ post.created }}
                         </a>
                     </small>

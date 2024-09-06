@@ -30,7 +30,6 @@ class TopicCreate(LoginRequiredMixin, CreateView):
         messages.success(self.request, "Votre sujet vient d'être bien pris en compte.")
         return redirect('forum:show_topic', **{
             'slug': form.cleaned_data.get('forum').slug,
-            'id': form.cleaned_data.get('forum').id,
             'id_post': topic.id,
             'slug_post': topic.slug
         })

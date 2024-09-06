@@ -9,7 +9,6 @@ class TopicDetail(DetailView):
     def get_object(self):
         topic = get_object_or_404(
             Topic,
-            board__pk=self.kwargs.get('id'),
             board__slug=self.kwargs.get('slug'), 
             pk=self.kwargs.get('id_post'), 
             slug=self.kwargs.get('slug_post')

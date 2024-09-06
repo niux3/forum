@@ -28,8 +28,8 @@
                     {{ post.message|markdown }}
                     <p class="mt-3 mb-0">
                         <span>Dans </span>
-                        <a href="{% url 'forum:topics' id=post.topic.board.id slug=post.topic.board.slug %}">{{ post.topic.board.name }}</a> - 
-                        <a href="{% url 'forum:show_topic' id=post.topic.board.id slug=post.topic.board.slug id_post=post.topic.id slug_post=post.topic.slug %}">{{ post.topic.subject }}</a>
+                        <a href="{% url 'forum:topics' slug=post.topic.board.slug %}">{{ post.topic.board.name }}</a> - 
+                        <a href="{% url 'forum:show_topic' slug=post.topic.board.slug id_post=post.topic.id slug_post=post.topic.slug %}">{{ post.topic.subject }}</a>
                     </p>
                 </div>
             </div>

@@ -19,7 +19,7 @@
             {% for board in object_list %}
             <tr>
                 <td>
-                    <a href="{% url 'forum:topics' id=board.pk slug=board.slug %}">{{ board.name }}</a>
+                    <a href="{% url 'forum:topics' slug=board.slug %}">{{ board.name }}</a>
                     <small class="text-muted d-block">{{ board.description }}</small>
                 </td>
                 <td class="align-middle">{{ board.get_posts_count }}</td>
@@ -28,7 +28,7 @@
                     {% with post=board.get_last_post %}
                     {% if post %}
                     <small>
-                        <a href="{% url 'forum:show_topic' id=board.pk slug=board.slug id_post=post.topic.pk slug_post=post.topic.slug %}#dernier">
+                        <a href="{% url 'forum:show_topic' slug=board.slug id_post=post.topic.pk slug_post=post.topic.slug %}#dernier">
                             {{ post.created_by.username }} le {{ post.created }}
                         </a>
                     </small>

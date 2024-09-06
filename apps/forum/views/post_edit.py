@@ -15,7 +15,6 @@ class PostEdit(LoginRequiredMixin, UpdateView):
         super().setup(request, *args, **kwargs)
         self.topic = get_object_or_404(
             Topic,
-            board__pk=self.kwargs.get('id'),
             board__slug=self.kwargs.get('slug'), 
             pk=self.kwargs.get('id_post'), 
             slug=self.kwargs.get('slug_post')
@@ -43,7 +42,6 @@ class PostEdit(LoginRequiredMixin, UpdateView):
         return redirect(
             'forum:show_topic', 
             slug=self.kwargs.get('slug'), 
-            id=self.kwargs.get('id'), 
             slug_post=self.kwargs.get('slug_post'), 
             id_post=self.kwargs.get('id_post')
         )
