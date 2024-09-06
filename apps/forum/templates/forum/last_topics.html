@@ -16,12 +16,12 @@
         <tbody>
             {% for topic in object_list %}
             <tr>
-                <td>
+                <td{% if forloop.first %} class="border-top-0"{% endif %}>
                     <a href="" class="d-flex justify-content-center align-items-center flex-column">
                         <img src="{% static 'img/avatar.svg' %}" alt="{{ topic.starter }}" class="mb-2 w-1 avatar">
                     </a>
                 </td>
-                <td class="align-middle d-flex flex-column">
+                <td class="align-middle d-flex flex-column{% if forloop.first %} border-top-0{% endif %}">
                     <a href="{% url 'forum:show_topic' id=topic.board.id slug=topic.board.slug slug_post=topic.slug id_post=topic.get_post.id %}">
                         {{ topic.subject }}
                     </a>
@@ -34,8 +34,7 @@
                         {% endif %}
                     {% endwith %}
                 </td>
-                <td class="align-middle">{{ topic.get_post_count }} réponse{% if topic.get_post_count > 1 %}s{% endif %}</td>
-                <td> </td>
+                <td class="align-middle{% if forloop.first %} border-top-0{% endif %}">{{ topic.get_post_count }} réponse{% if topic.get_post_count > 1 %}s{% endif %}</td>
             </tr>
             {% endfor %}
         </tbody>
