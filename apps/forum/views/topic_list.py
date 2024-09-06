@@ -24,4 +24,6 @@ class TopicList(ListView):
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
         ctx['board'] = self.board
+        views = [ 'topics', 'most_read', 'most_answers', 'which_user_replied' ]
+        ctx['topics_urls'] = { v : reverse_lazy(f'forum:{v}', kwargs={'slug': self.board.slug}) for v in views }
         return ctx
