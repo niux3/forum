@@ -16,6 +16,7 @@ if you want populate database
 
 ```
 ./manage.py create_users
+./manage.py create_themes
 ./manage.py create_boards
 ./manage.py create_topics
 ./manage.py create_posts
