@@ -32,8 +32,11 @@
                 element: document.querySelector("textarea"),
                 forceSync: true
             })
+            
             var $linkThemeUser = document.getElementById('theme-user'),
                 $selectTheme = document.querySelector('#id_theme')
+            
+            $selectTheme.querySelector('option').remove()
             $selectTheme.addEventListener('change', e =>{
                 let theme_selected = e.target.querySelector(`option[value='${e.target.value}']`).textContent,
                     pattern = /^(.+\/)(\w+)(\.css)$/
