@@ -7,11 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Forum{% endblock %}</title>
         <link rel="stylesheet" id="theme-user" href="{% static theme_user %}">
+        <link rel="stylesheet" href="{% static 'css/icons.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         {% block stylesheet %}{% endblock %}
     </head>
     <body>
         {% block body %}
+        {% include 'includes/modal-search.html' %}
         <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'forum:index' %}">Forum</a>
@@ -21,6 +23,9 @@
                 <div class="collapse navbar-collapse" id="mainMenu">
                     {% if user.is_authenticated %}
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-search">chercher</button>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ user.username|title }}
@@ -35,8 +40,18 @@
                     </ul>
                     {% else %}
                     <div class="form-inline ml-auto">
-                        <a href="{% url 'registration:login' %}" class="btn btn-info">se connecter</a>
-                        <a href="{% url 'registration:signup' %}" class="btn btn-primary ml-2">s'inscrire</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-search">
+                            <i class="bi bi-search"></i>
+                            <span class="d-none">chercher</span>
+                        </button>
+                        <a href="{% url 'registration:login' %}" class="btn btn-info ml-2">
+                            <i class="bi bi-person-check"></i>
+                            <span class="ml-1">se connecter</span>
+                        </a>
+                        <a href="{% url 'registration:signup' %}" class="btn btn-primary ml-2">
+                            <i class="bi bi-person-add"></i>
+                            <span class="ml-1">s'inscrire</span>
+                        </a>
                     </div>
                     {% endif %}
                 </div>
