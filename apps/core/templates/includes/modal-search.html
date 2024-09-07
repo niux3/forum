@@ -1,19 +1,29 @@
 <div class="modal fade" id="modal-search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <form class="modal-content">
       <div class="modal-header">
-        <p class="modal-title h5" id="exampleModalLabel">Modal title</p>
+        <p class="modal-title h5" id="exampleModalLabel">Rechercher</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+          {% csrf_token %}
+          {% include 'includes/form.html' with form=search_form %}
+          <p>
+              <button class="btn btn-link btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseAdvancedSearchForm" aria-expanded="false" aria-controls="collapseAdvancedSearchForm">
+                  <span>recherche avancée</span>
+                  <i class="bi bi-chevron-down ml-1"></i>
+              </button>
+          </p>
+          <div class="collapse" id="collapseAdvancedSearchForm">
+              {% include 'includes/form.html' with form=advanced_search_form %}
+          </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>

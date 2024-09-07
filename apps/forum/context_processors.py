@@ -1,4 +1,6 @@
 from django.urls import reverse_lazy
+from forum.forms import AdvancedSeachForm, SeachForm
+
 
 
 def boards_urls(request):
@@ -31,4 +33,10 @@ def boards_urls(request):
 
     return {
         'boards_urls': urls
+    }
+
+def get_search_forms(request):
+    return {
+        'search_form': SeachForm(),
+        'advanced_search_form': AdvancedSeachForm(),
     }

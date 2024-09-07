@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 
                 'forum.context_processors.boards_urls',
+                'forum.context_processors.get_search_forms',
                 'core.context_processors.get_theme_user',
             ],
         },
