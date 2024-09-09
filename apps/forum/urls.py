@@ -12,6 +12,7 @@ from forum.views import (
     PostEdit,
     LastTopicsList,
     LastPostList,
+    TopicSearch,
 )
 
 app_name = ForumConfig.name
@@ -27,4 +28,5 @@ urlpatterns = [
     path('<str:slug>/<str:slug_post>-<int:id_post>.html', TopicDetail.as_view(), name='show_topic'),
     path('<str:slug>/reponse/<str:slug_post>-<int:id_post>.html', TopicReply.as_view(), name='reply_topic'),
     path('<str:slug>/editer/<str:slug_post>-<int:id_post>-<int:id_message>.html', PostEdit.as_view(), name='edit_post'),
+    path('rechercher.html', TopicSearch.as_view(), name='search'),
 ]

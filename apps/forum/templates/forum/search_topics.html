@@ -2,15 +2,14 @@
 {% load static %}
 
 {% block title %}
-    {{ prefix }} sujets - {{ block.super }}
+    résultat de recherche - {{ block.super }}
 {% endblock %}
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forums</a></li>
-  <li class="breadcrumb-item active">{{ prefix }} sujets</li>
+  <li class="breadcrumb-item active">Résultat de la recherche</li>
 {% endblock %}
 
 {% block content %}
-    {% include 'includes/primary-navtabs.html' %}
     {% include 'includes/table_topics.html' with object_list=object_list %}
 {% endblock %}
