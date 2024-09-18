@@ -15,9 +15,9 @@ class Profile(models.Model):
     twitter = models.URLField(null=True, blank=True)
     facebook = models.URLField(null=True, blank=True)
     linkedin = models.URLField(null=True, blank=True)
-    newsletter = models.BooleanField(default=False)
-    private_message = models.BooleanField(default=True)
-    show_email = models.BooleanField(default=False)
+    newsletter = models.BooleanField(default=False, blank=True, null=True)
+    private_message = models.BooleanField(default=True, blank=True, null=True)
+    show_email = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self):
         return self.user.username
