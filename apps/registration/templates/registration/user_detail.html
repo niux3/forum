@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static core_tags %}
+{% block title %}Profile de {{ object.user.username }}{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'forum:index' %}">Forums</a></li>
+  <li class="breadcrumb-item active">Profile de {{ object.user.username }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center">
+    <h1 class="w-25 text-center">
+        <img src="{% static 'img/avatar.svg' %}" alt="{{ post.created_by.username }}" class="mb-2 w-50">
+        <strong class="text-muted d-block">{{ object.user.username }}</strong>
+    </h1>
+</div>
+{{ object.location }}
+<div class="row my-5">
+    {% if object.website is not None %}
+    <dl class="col-3 text-center">
+        <dt>Site web</dt>
+        <dd>{{ object.website }}</dd>
+    </dl>
+    {% endif %}
+    {% if object.twitter is not None %}
+    <dl class="col-3 text-center">
+        <dt>Twitter</dt>
+        <dd>{{ object.twitter }}</dd>
+    </dl>
+    {% endif %}
+    {% if object.facebook is not None %}
+    <dl class="col-3 text-center">
+        <dt>Facebook</dt>
+        <dd>{{ object.facebook }}</dd>
+    </dl>
+    {% endif %}
+    {% if object.linkedin is not None %}
+    <dl class="col-3 text-center">
+        <dt>Linkedin</dt>
+        <dd>{{ object.linkedin }}</dd>
+    </dl>
+    {% endif %}
+    <hr>
+    {% if object.location != '' %}
+    <dl class="col-6 text-center">
+        <dt>Localisation</dt>
+        <dd>{{ object.location }}</dd>
+    </dl>
+    {% endif %}
+    {% if object.birth_date is not None %}
+    <dl class="col-6 text-center">
+        <dt>Date anniversaore</dt>
+        <dd>{{ object.birth_date }}</dd>
+    </dl>
+    {% endif %}
+    <hr>
+    {% if object.bio != '' %}
+    <dl class="col-12">
+        <dt>Biographie</dt>
+        <dd>{{ object.bio | markdown }}</dd>
+    </dl>
+    {% endif %}
+    <hr>
+    
+</div>
+{% endblock %}

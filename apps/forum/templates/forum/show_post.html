@@ -14,7 +14,7 @@
 </div>
 
 {% for post in object.posts.all %}
-    <div class="card mb-2 {% if forloop.first %}border-dark{% endif %}" id="post_{{ post.id }}">
+<div class="card mb-2 {% if forloop.first %}border-dark{% endif %}" id="post_{{ post.id }}">
     {% if forloop.first %}
       <div class="card-header text-white bg-dark py-2 px-3">{{ object.subject }}</div>
     {% endif %}
@@ -23,7 +23,9 @@
             <div class="col-2 text-center">
                 <img src="{% static 'img/avatar.svg' %}" alt="{{ post.created_by.username }}" class="mb-2 w-50">
                 {#<small>Sujet : {{ post.created_by.posts.count }}</small>#}
-                <strong class="text-muted d-block">{{ post.created_by.username }}</strong>
+                <a href="{% url 'registration:user_detail' username=post.created_by.username id=post.created_by.id %}">
+                    <strong class="text-muted d-block">{{ post.created_by.username }}</strong>
+                </a>
             </div>
             <div class="col-10">
                 <div class="row mb-3">

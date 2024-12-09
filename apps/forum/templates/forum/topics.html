@@ -25,7 +25,7 @@
             {% for topic in object_list %}
             <tr>
                 <td><a href="{% url 'forum:show_topic' slug=board.slug id_post=topic.pk slug_post=topic.slug %}">{{ topic.subject }}</a></td>
-                <td>{{ topic.starter.username }}</td>
+                <td><a href="{% url 'registration:user_detail' username=topic.starter.username id=topic.starter.id  %}">{{ topic.starter.username }}</a></td>
                 <td>{{ topic.replies }}</td>
                 <td>{{ topic.views }}</td>
                 <td>

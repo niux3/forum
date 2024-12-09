@@ -16,6 +16,7 @@ from registration.views import (
     CustomPasswordChangeView,
     CustomPasswordResetView,
     CustomPasswordResetConfirmView,
+    UserDetail,
 )
 
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path('se-connecter.html', LoginView.as_view(), name="login"),
     path('se-deconnecter.html', LogoutView.as_view(), name="logout"),
     path('mon-compte.html', UserUpdateView.as_view(), name="profile"),
+    path('detail-<str:username>-<int:id>.html', UserDetail.as_view(), name="user_detail"),
     path('changer-mot-de-passe.html', CustomPasswordChangeView.as_view(), name='password_change'),
 
     # this view doesn't exists because redirection after change password (registration:password_change)
