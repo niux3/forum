@@ -14,30 +14,30 @@
         <strong class="text-muted d-block">{{ object.user.username }}</strong>
     </h1>
 </div>
-{{ object.location }}
+
 <div class="row my-5">
     {% if object.website is not None %}
     <dl class="col-3 text-center">
         <dt>Site web</dt>
-        <dd>{{ object.website }}</dd>
+        <dd><a href="{{ object.website }}">{{ object.website }}</a></dd>
     </dl>
     {% endif %}
     {% if object.twitter is not None %}
     <dl class="col-3 text-center">
         <dt>Twitter</dt>
-        <dd>{{ object.twitter }}</dd>
+        <dd><a href="{{ object.twitter }}">{{ object.twitter }}</a></dd>
     </dl>
     {% endif %}
     {% if object.facebook is not None %}
     <dl class="col-3 text-center">
         <dt>Facebook</dt>
-        <dd>{{ object.facebook }}</dd>
+        <dd><a href="{{ object.facebook }}">{{ object.facebook }}</a></dd>
     </dl>
     {% endif %}
     {% if object.linkedin is not None %}
     <dl class="col-3 text-center">
         <dt>Linkedin</dt>
-        <dd>{{ object.linkedin }}</dd>
+        <dd><a href="{{ object.linkedin }}">{{ object.linkedin }}</a></dd>
     </dl>
     {% endif %}
     <hr>
