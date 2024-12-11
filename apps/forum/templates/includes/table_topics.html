@@ -12,7 +12,7 @@
                 <a href="{% url 'forum:show_topic' slug=topic.board.slug slug_post=topic.slug id_post=topic.get_post.id %}">
                     {{ topic.subject }}
                 </a>
-                <span>par <a href="">{{ topic.starter }}</a>, {{ topic.views }} vue{% if topic.views > 1 %}s{% endif %}, 
+                <span>par <a href="{% url 'registration:user_detail' id=topic.starter.id username=topic.starter.username %}">{{ topic.starter }}</a>, {{ topic.views }} vue{% if topic.views > 1 %}s{% endif %}, 
                 {% with post=topic.get_last_post %}
                     {% if post %}
                         <small>dernière réponse <a href="{% url 'forum:show_topic' slug=post.topic.board.slug id_post=post.topic.pk slug_post=post.topic.slug %}#dernier">{{ post.created_by.username }} ({{ post.created }})</a></small>

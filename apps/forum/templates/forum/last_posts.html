@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-2 text-center">
                     <img src="{% static 'img/avatar.svg' %}" alt="{{ post.created_by.username }}" class="mb-2 w-50">
-                    <strong class="text-muted d-block">{{ post.created_by.username }}</strong>
+                    <strong class="text-muted d-block"><a href="{% url 'registration:user_detail' id=post.created_by.id username=post.created_by.username %}">{{ post.created_by.username }}</a></strong>
                 </div>
                 <div class="col-10">
                     <div class="row mb-3">
