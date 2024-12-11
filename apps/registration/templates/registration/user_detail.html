@@ -15,52 +15,61 @@
     </h1>
 </div>
 
+<div class="d-flex justify-content-center">
+    {% if object.show_email %}
+        <dl{% if object.show_email and object.private_message and user != object.user %} class="mr-5"{% endif %}>
+            <dt class="text-center">email</dt>
+            <dd class="text-center"><a class="btn btn-primary" href="mailto:{{ object.user.email }}">{{ object.user.email }}</a></dd>
+        </dl>
+    {% endif %}
+    {% if object.private_message and user != object.user %}
+        <dl{% if object.show_email and object.private_message and user != object.user %} class="ml-5"{% endif %}>
+            <dt class="text-center">message privé</dt>
+            <dd class="text-center"><a class="btn btn-primary" href="#">envoyer un message privé</a></dd>
+        </dl>
+    {% endif %}
+</div>
+
 <div class="row my-5">
-    {% if object.website is not None %}
+    
     <dl class="col-3 text-center">
         <dt>Site web</dt>
-        <dd><a href="{{ object.website }}">{{ object.website }}</a></dd>
+        <dd>{% if object.website is not None %}<a href="{{ object.website }}">{{ object.website }}</a>{% else %}&ndash;{% endif %}</dd>
     </dl>
-    {% endif %}
-    {% if object.twitter is not None %}
     <dl class="col-3 text-center">
         <dt>Twitter</dt>
-        <dd><a href="{{ object.twitter }}">{{ object.twitter }}</a></dd>
+        <dd>{% if object.twitter is not None %}<a href="{{ object.twitter }}">{{ object.twitter }}</a>{% else %}&ndash;{% endif %}</dd>
     </dl>
-    {% endif %}
-    {% if object.facebook is not None %}
+    
+    
     <dl class="col-3 text-center">
         <dt>Facebook</dt>
-        <dd><a href="{{ object.facebook }}">{{ object.facebook }}</a></dd>
+        <dd>{% if object.facebook is not None %}<a href="{{ object.facebook }}">{{ object.facebook }}</a>{% else %}&ndash;{% endif %}</dd>
     </dl>
-    {% endif %}
-    {% if object.linkedin is not None %}
+    
+    
     <dl class="col-3 text-center">
         <dt>Linkedin</dt>
-        <dd><a href="{{ object.linkedin }}">{{ object.linkedin }}</a></dd>
+        <dd>{% if object.linkedin is not None %}<a href="{{ object.linkedin }}">{{ object.linkedin }}</a>{% else %}&ndash;{% endif %}</dd>
     </dl>
-    {% endif %}
-    <hr>
-    {% if object.location != '' %}
+    
+    
     <dl class="col-6 text-center">
         <dt>Localisation</dt>
-        <dd>{{ object.location }}</dd>
+        <dd>{% if object.location != '' %}{{ object.location }}{% else %}&ndash;{% endif %}</dd>
     </dl>
-    {% endif %}
-    {% if object.birth_date is not None %}
+    
+    
     <dl class="col-6 text-center">
         <dt>Date anniversaore</dt>
-        <dd>{{ object.birth_date }}</dd>
+        <dd>{% if object.birth_date is not None %}{{ object.birth_date }}{% else %}&ndash;{% endif %}</dd>
     </dl>
-    {% endif %}
-    <hr>
-    {% if object.bio != '' %}
+    
+    
     <dl class="col-12">
         <dt>Biographie</dt>
-        <dd>{{ object.bio | markdown }}</dd>
+        <dd>{% if object.bio != '' %}{{ object.bio | markdown }}{% else %}&ndash;{% endif %}</dd>
     </dl>
-    {% endif %}
-    <hr>
     
 </div>
 {% endblock %}
