@@ -62,7 +62,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'libraries': {
-                'core_tags': 'core.templatestags.core_tags',
+                'core_tags': 'core.templatetags.core_tags',
+                'get_count_mp': 'forum.templatetags.forum_tags',
             },
             'context_processors': [
                 'django.template.context_processors.debug',
