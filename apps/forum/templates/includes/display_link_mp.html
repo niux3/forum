@@ -1,0 +1,6 @@
+{% if has_mp %}
+    <a class="dropdown-item" href="#">
+        <span>Message{% if is_pluralize %}s{% endif %} privé{% if is_pluralize %}s{% endif %}</span>
+        <span class="badge badge-pill badge-danger">{{ message_count }}</span>
+    </a>
+{% endif %}

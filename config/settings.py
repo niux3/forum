@@ -63,7 +63,7 @@ TEMPLATES = [
         'OPTIONS': {
             'libraries': {
                 'core_tags': 'core.templatetags.core_tags',
-                'get_count_mp': 'forum.templatetags.forum_tags',
+                'get_mp': 'forum.templatetags.forum_tags',
             },
             'context_processors': [
                 'django.template.context_processors.debug',

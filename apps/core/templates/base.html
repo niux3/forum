@@ -1,4 +1,4 @@
-{% load static get_count_mp %}
+{% load static get_mp %}
 <!doctype html>
 <html lang="fr">
     <head>
@@ -37,6 +37,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
                                 <a class="dropdown-item" href="{% url "registration:profile" %}">Mon compte</a>
+                                {% display_link_mp %}
                                 <a class="dropdown-item" href="{% url "registration:password_change" %}">Changer le mot de passe</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'registration:logout' %}">se déconnecter</a>
