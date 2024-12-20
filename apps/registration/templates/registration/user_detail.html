@@ -25,7 +25,7 @@
     {% if object.private_message and user != object.user %}
         <dl{% if object.show_email and object.private_message and user != object.user %} class="ml-5"{% endif %}>
             <dt class="text-center">message privé</dt>
-            <dd class="text-center"><a class="btn btn-primary" href="{% url 'forum:private_message' id=object.user.pk user=object.user %}">envoyer un message privé</a></dd>
+            <dd class="text-center"><a class="btn btn-primary" href="{% url 'forum:private_message_edit' id=object.user.pk user=object.user %}">envoyer un message privé</a></dd>
         </dl>
     {% endif %}
 </div>

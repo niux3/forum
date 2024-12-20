@@ -13,7 +13,8 @@ from forum.views import (
     LastTopicsList,
     LastPostList,
     TopicSearch,
-    PrivateMessageEdit
+    PrivateMessageEdit,
+    PrivateMessageList,
 )
 
 app_name = ForumConfig.name
@@ -30,5 +31,6 @@ urlpatterns = [
     path('<str:slug>/reponse/<str:slug_post>-<int:id_post>.html', TopicReply.as_view(), name='reply_topic'),
     path('<str:slug>/editer/<str:slug_post>-<int:id_post>-<int:id_message>.html', PostEdit.as_view(), name='edit_post'),
     path('rechercher.html', TopicSearch.as_view(), name='search'),
-    path('message-prive-<str:user>-<int:id>.html', PrivateMessageEdit.as_view(), name="private_message"),
+    path('message-prive-<str:user>-<int:id>.html', PrivateMessageEdit.as_view(), name="private_message_edit"),
+    path('messages-prives.html', PrivateMessageList.as_view(), name="private_message_list"),
 ]

@@ -10,5 +10,5 @@ class PrivateMessage(models.Model):
     updated = models.DateTimeField(null=True, auto_now=True)
 
     def __str__(self):
-        return f"({self.created}) {self.user.username} -> {self.user.username}"
+        return f"({self.created}) {self.from_user.username} -> {self.to_user.username}"
 

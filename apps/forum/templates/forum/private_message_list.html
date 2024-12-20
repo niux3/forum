@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static core_tags %}
+{% block title %}Messages privés{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'registration:profile' %}">Mon compte</a></li>
+  <li class="breadcrumb-item active">Messages privés</li>
+{% endblock %}
+
+{% block content %}
+{% for object in object_list %}
+<div class="card mb-2" id="post_{{ object.id }}">
+    <div class="card-body p-3"{% if forloop.last %} id="dernier"{% endif %}>
+        <div class="row">
+            <div class="col-2 text-center">
+                <img src="{% static 'img/avatar.svg' %}" alt="{{ object.from_user.username }}" class="mb-2 w-50">
+                {#<small>Sujet : {{ post.created_by.posts.count }}</small>#}
+                <a href="{% url 'registration:user_detail' username=object.from_user.username id=object.from_user.id %}">
+                    <strong class="text-muted d-block">{{ object.from_user.username }}</strong>
+                </a>
+            </div>
+            <div class="col-10">
+                <div class="row mb-3">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6 text-right">
+                        <small class="text-muted">{{ object.created }}</small>
+                    </div>
+                </div>
+                {{ object.message|markdown }}
+                <div>
+                    <a href="{% url 'forum:private_message_edit' id=object.from_user.pk user=object.from_user %}" class="btn btn-primary mr-3" role="button">Répondre</a>
+                    <a href="" class="btn btn-danger" role="button">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -11,3 +11,4 @@ from forum.views.last_topic_list import LastTopicsList
 from forum.views.last_posts_list import LastPostList
 from forum.views.topics_search import TopicSearch
 from forum.views.private_message_edit import PrivateMessageEdit
+from forum.views.private_message_list import PrivateMessageList

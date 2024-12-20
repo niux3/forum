@@ -1,5 +1,5 @@
 {% if has_mp %}
-    <a class="dropdown-item" href="#">
+    <a class="dropdown-item" href="{% url 'forum:private_message_list' %}">
         <span>Message{% if is_pluralize %}s{% endif %} privé{% if is_pluralize %}s{% endif %}</span>
         <span class="badge badge-pill badge-danger">{{ message_count }}</span>
     </a>
