@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Forums</li>
+{% endblock %}
+
+{% block content %}
+    <h1>Page introuvable</h1>
+    <p><a href="{% url 'forum:index' %}">retour à l'accueil</a></p>
+{% endblock %}
