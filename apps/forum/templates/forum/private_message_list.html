@@ -30,7 +30,7 @@
                 {{ object.message|markdown }}
                 <div>
                     <a href="{% url 'forum:private_message_edit' id=object.from_user.pk user=object.from_user %}" class="btn btn-primary mr-3" role="button">Répondre</a>
-                    <a href="{% url 'forum:private_message_delete' pk=object.id %}" class="btn btn-danger" role="button">Supprimer</a>
+                    <a href="{% url 'forum:private_message_delete' pk=object.id %}" class="btn btn-danger" role="button" data-toggle="modal" data-target="#modal-confirm">Supprimer</a>
                 </div>
             </div>
         </div>
@@ -38,4 +38,34 @@
 </div>
 {% endfor %}
 
+<div class="modal fade" id="modal-confirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <form class="modal-content" action="{% url 'forum:private_message_delete' pk="0" %}">
+      <div class="modal-header">
+        <p class="modal-title h5" id="exampleModalLabel">Supprimer ce message</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>Souhaitez-vous réellement supprimer ce message ?</p>
+          {% csrf_token %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    $('#modal-confirm').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget),
+            action = button.attr('href'),
+            modal = $(this)
+        $('form', modal).attr('action', action)
+    })
+</script>
 {% endblock %}
