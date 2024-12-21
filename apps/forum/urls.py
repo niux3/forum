@@ -15,6 +15,7 @@ from forum.views import (
     TopicSearch,
     PrivateMessageEdit,
     PrivateMessageList,
+    PrivateMessageDelete,
 )
 
 app_name = ForumConfig.name
@@ -33,4 +34,5 @@ urlpatterns = [
     path('rechercher.html', TopicSearch.as_view(), name='search'),
     path('message-prive-<str:user>-<int:id>.html', PrivateMessageEdit.as_view(), name="private_message_edit"),
     path('messages-prives.html', PrivateMessageList.as_view(), name="private_message_list"),
+    path('<int:pk>-message-prive-suppression.html', PrivateMessageDelete.as_view(), name="private_message_delete"),
 ]

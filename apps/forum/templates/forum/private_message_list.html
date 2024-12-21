@@ -30,7 +30,7 @@
                 {{ object.message|markdown }}
                 <div>
                     <a href="{% url 'forum:private_message_edit' id=object.from_user.pk user=object.from_user %}" class="btn btn-primary mr-3" role="button">Répondre</a>
-                    <a href="" class="btn btn-danger" role="button">Supprimer</a>
+                    <a href="{% url 'forum:private_message_delete' pk=object.id %}" class="btn btn-danger" role="button">Supprimer</a>
                 </div>
             </div>
         </div>
