@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
-    message = models.TextField(max_length=4000)
+    message = models.TextField()
     topic = models.ForeignKey('Topic', related_name='posts', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True, auto_now=True)
