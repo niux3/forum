@@ -26,3 +26,16 @@ How to launch application ?
 ```
 ./manage.py runserver
 ```
+
+## screenshots
+
+![home](./apps/core/static/img/screenshots/capturepage-1.png)
+![search](./apps/core/static/img/screenshots/capturepage-2.png)
+![mp](./apps/core/static/img/screenshots/capturepage-3.png)
+![my topics](./apps/core/static/img/screenshots/capturepage-4.png)
+![get password](./apps/core/static/img/screenshots/capturepage-5.png)
+![signin](./apps/core/static/img/screenshots/capturepage-6.png)
+![new post](./apps/core/static/img/screenshots/capturepage-7.png)
+![see profil](./apps/core/static/img/screenshots/capturepage-8.png)
+![all topics](./apps/core/static/img/screenshots/capturepage-9.png)
+![post](./apps/core/static/img/screenshots/capturepage-10.png)
