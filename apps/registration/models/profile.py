@@ -8,7 +8,7 @@ from registration.models import Theme
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True, related_name='profile')
-    bio = models.TextField(max_length=500, blank=True)
+    bio = models.TextField(max_length=8192, blank=True)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.CharField(max_length=16, null=True, blank=True)
     website = models.URLField(null=True, blank=True)
