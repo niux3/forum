@@ -1,5 +1,9 @@
 # forum
 
+## Require
+
+python >= 3.9
+
 ## install
 
 ```
